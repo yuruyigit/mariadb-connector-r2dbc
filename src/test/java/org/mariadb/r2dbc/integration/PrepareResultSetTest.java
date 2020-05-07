@@ -77,6 +77,7 @@ public class PrepareResultSetTest extends BaseTest {
   void resultSetSkippingRes() {
     for (int i = 10; i < 17; i++) {
       int finalI = i;
+      //      System.out.println("IIIIIIIIIIIIIIIII:" + i);
       sharedConnPrepare
           .createStatement("SELECT * FROM PrepareResultSetTest WHERE 1 = ?")
           .bind(0, 1)
@@ -119,19 +120,19 @@ public class PrepareResultSetTest extends BaseTest {
       PrepareCache cache = (PrepareCache) method.invoke(connection);
       ServerPrepareResult[] prepareResults = new ServerPrepareResult[5];
 
-      for (int i = 0; i < 5; i++) {
+      for (long i = 0; i < 5; i++) {
 
         connection
             .createStatement("SELECT " + i + ", ?")
             .bind(0, i)
             .execute()
-            .flatMap(r -> r.map((row, metadata) -> row.get(0, Integer.class)))
+            .flatMap(r -> r.map((row, metadata) -> row.get(0, Long.class)))
             .as(StepVerifier::create)
             .expectNext(i)
             .verifyComplete();
 
         Object[] entriesArr = cache.entrySet().toArray();
-        switch (i) {
+        switch ((int) i) {
           case 0:
             Assertions.assertEquals(
                 "SELECT 0, ?=ServerPrepareResult{statementId=1, numColumns=2, numParams=1, closing=false, use=0, cached=true}",
@@ -210,7 +211,8 @@ public class PrepareResultSetTest extends BaseTest {
       Assertions.assertEquals(endingStatus.get(0), "3"); // Prepared_stmt_count
       Assertions.assertEquals(endingStatus.get(1), "6"); // Com_stmt_prepare
       Assertions.assertTrue(
-          "3".equals(endingStatus.get(2)) || "4".equals(endingStatus.get(2))); // Com_stmt_close
+          "3".equals(endingStatus.get(2)) || "4".equals(endingStatus.get(2)),
+          endingStatus.get(2)); // Com_stmt_close
     } finally {
       connection.close().block();
     }
