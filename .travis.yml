@@ -8,8 +8,6 @@ addons:
 jdk: openjdk11
 
 before_install:
-  - git clone https://github.com/rusher/connector-test-machine.git
-  - run connector-test-machine/launch
   - echo "MAVEN_OPTS='-Xmx384m'" > ~/.mavenrc
 
 install:
