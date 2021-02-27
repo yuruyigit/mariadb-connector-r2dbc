@@ -313,7 +313,7 @@ public class TlsTest extends BaseConnectionTest {
   @Test
   void fullMutualWithoutClientCerts() throws Exception {
     Assumptions.assumeTrue(
-        System.getenv("TRAVIS") != null && System.getenv("MAXSCALE_TEST_DISABLE") == null);
+        System.getenv("TRAVIS") != null && !"maxscale".equals(System.getenv("srv")) && !"skysql-ha".equals(System.getenv("srv")));
     Assumptions.assumeTrue(haveSsl(sharedConn));
     Assumptions.assumeTrue(serverSslCert != null && clientSslCert != null & clientSslKey != null);
     MariadbConnectionConfiguration conf =

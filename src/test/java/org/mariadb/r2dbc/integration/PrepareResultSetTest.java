@@ -552,7 +552,7 @@ public class PrepareResultSetTest extends BaseConnectionTest {
 
       List<String> endingStatus = prepareInfo(connection);
       // Com_stmt_prepare
-      if (System.getenv("MAXSCALE_TEST_DISABLE") == null){
+      if (!"maxscale".equals(System.getenv("srv")) && !"skysql-ha".equals(System.getenv("srv"))) {
         Assertions.assertEquals("5", endingStatus.get(1), endingStatus.get(1));
       }
 
