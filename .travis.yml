@@ -46,7 +46,7 @@ matrix:
 
 script:
   - git clone https://github.com/rusher/connector-test-machine.git
-  - run connector-test-machine/launch -t$srv -s$CONNECTOR_TEST_SECRET_KEY -v$v
+  - connector-test-machine/launch.sh -t$srv -s$CONNECTOR_TEST_SECRET_KEY -v$v
   - if [[ -n "$BENCH" ]] ; then mvn clean package -P bench -Dmaven.test.skip; fi
   - if [[ -n "$BENCH" ]] ; then java -Duser.country=US -Duser.language=en -DTEST_PORT=$TEST_DB_PORT -DTEST_HOST=$TEST_DB_HOST -DTEST_USERNAME=$TEST_DB_USER -jar target/benchmarks.jar; fi
   - if [[ -z "$BENCH" ]] ; then mvn clean test -DjobId=${TRAVIS_JOB_ID}; fi
