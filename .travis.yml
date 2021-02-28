@@ -9,11 +9,8 @@ jdk: openjdk11
 
 install:
   - echo "MAVEN_OPTS='-Xmx384m'" > ~/.mavenrc
-  - echo "FIRT phase"
   - git clone https://github.com/rusher/connector-test-machine.git
-  - echo "2 phase"
-  - connector-test-machine/launch.sh -t$srv -s$CONNECTOR_TEST_SECRET_KEY -v$v -dtestr2
-  - echo "3 phase"
+  - connector-test-machine/launch.sh -t "$srv" -s "$CONNECTOR_TEST_SECRET_KEY" -v "$v" -d testr2
 
 matrix:
   allow_failures:
