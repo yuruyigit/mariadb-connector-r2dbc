@@ -7,7 +7,7 @@ addons:
     - mariadb.example.com
 jdk: openjdk11
 
-before_install:
+install:
   - echo "MAVEN_OPTS='-Xmx384m'" > ~/.mavenrc
 
 matrix:

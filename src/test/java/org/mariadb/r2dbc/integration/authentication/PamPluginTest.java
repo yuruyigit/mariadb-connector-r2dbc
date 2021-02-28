@@ -33,9 +33,9 @@ public class PamPluginTest extends BaseConnectionTest {
     // /etc/pam.d/mariadb pam configuration is created beforehand
     Assumptions.assumeTrue(
         System.getenv("TRAVIS") != null
-                && !"maxscale".equals(System.getenv("srv"))
-                && !"skysql".equals(System.getenv("srv"))
-                && !"skysql-ha".equals(System.getenv("srv")));
+            && !"maxscale".equals(System.getenv("srv"))
+            && !"skysql".equals(System.getenv("srv"))
+            && !"skysql-ha".equals(System.getenv("srv")));
     Assumptions.assumeTrue(isMariaDBServer());
 
     sharedConn.createStatement("INSTALL PLUGIN pam SONAME 'auth_pam'").execute().blockLast();

@@ -58,9 +58,15 @@ public class TestConfiguration {
     password = defaultPassword;
     username = defaultUser;
     other = defaultOther;
-    String connString = String.format(
-        "r2dbc:mariadb://%s:%s@%s:%s/%s%s",
-        username, password, host, port, database, other == null ? "" : "?" + other.replace("\n", "\\n"));
+    String connString =
+        String.format(
+            "r2dbc:mariadb://%s:%s@%s:%s/%s%s",
+            username,
+            password,
+            host,
+            port,
+            database,
+            other == null ? "" : "?" + other.replace("\n", "\\n"));
     System.out.println(connString);
     ConnectionFactoryOptions options = ConnectionFactoryOptions.parse(connString);
     System.out.println(options);
