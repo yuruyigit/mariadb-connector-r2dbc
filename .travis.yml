@@ -10,7 +10,7 @@ jdk: openjdk11
 install:
   - echo "MAVEN_OPTS='-Xmx384m'" > ~/.mavenrc
   - git clone https://github.com/rusher/connector-test-machine.git
-  - connector-test-machine/launch.sh -t "$srv" -s "$CONNECTOR_TEST_SECRET_KEY" -v "$v" -d testr2
+  - source connector-test-machine/launch.sh -t "$srv" -s "$CONNECTOR_TEST_SECRET_KEY" -v "$v" -d testr2
 
 matrix:
   allow_failures:
