@@ -12,7 +12,7 @@ install:
   - echo "FIRT phase"
   - git clone https://github.com/rusher/connector-test-machine.git
   - echo "2 phase"
-  - connector-test-machine/launch.sh -t$srv -s$CONNECTOR_TEST_SECRET_KEY -v$v
+  - connector-test-machine/launch.sh -t$srv -s$CONNECTOR_TEST_SECRET_KEY -v$v -dtestr2
   - echo "3 phase"
 
 matrix:
